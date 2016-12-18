@@ -41,7 +41,23 @@ public class EchoDialog : IDialog<object>
         }
         else
         {
-            await context.PostAsync($"{this.count++}: You said {message.Text}");
+            this.count++;
+            string response;
+
+            if (message.Text.Contains("time"))
+            {
+                response = "It's time to go Bi-Modal";
+            }
+            else if (message.Text.EndsWith("?"))
+            {
+                response = "The real question is: Are you doing API mediation?";
+            }
+            else
+            {
+                response = "Make it Smart. Make it Digital. Make it Programmable.";
+            }
+
+            await context.PostAsync(response);
             context.Wait(MessageReceivedAsync);
         }
     }
