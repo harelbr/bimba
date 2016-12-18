@@ -30,12 +30,12 @@ public class EchoDialog : IDialog<object>
     public virtual async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
     {
         var message = await argument;
-        if (message.Text == "reset")
+        if (message.Text == "bimba")
         {
             PromptDialog.Confirm(
                 context,
                 AfterResetAsync,
-                "Are you sure you want to reset the count?",
+                "Are you Bi-Modal?",
                 "Didn't get that!",
                 promptStyle: PromptStyle.Auto);
         }
@@ -68,11 +68,11 @@ public class EchoDialog : IDialog<object>
         if (confirm)
         {
             this.count = 1;
-            await context.PostAsync("Reset count.");
+            await context.PostAsync("Awesome!!!");
         }
         else
         {
-            await context.PostAsync("Did not reset count.");
+            await context.PostAsync("Well, there's no time like the present to get started...");
         }
         context.Wait(MessageReceivedAsync);
     }
